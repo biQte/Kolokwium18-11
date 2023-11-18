@@ -25,7 +25,7 @@ namespace Kolokwium18_11
             return lines;
         }
 
-        static bool isFirst(int a)
+        static bool isPrime(int a)
         {
             if(a < 2) return false;
             for (int i = 2; i < Math.Sqrt(a) + 1; i++)
@@ -39,33 +39,33 @@ namespace Kolokwium18_11
             return true;
         }
 
-        static ArrayList checkIdentificators(string[] identificators)
+        static ArrayList checkIdentificatorsForOnlyPrimeNumbers(string[] identificators)
         {
-            ArrayList idsWithOnlyFirstNumbers = new ArrayList();
+            ArrayList idsWithOnlyPrimeNumbers = new ArrayList();
 
             for (int i = 0; i < identificators.Length; i++)
             {
-                int firstCount = 0;
+                int primeCount = 0;
                 for (int j = 3; j < identificators[i].Length; j++)
                 {
                     char c = identificators[i][j];
                     int a = int.Parse(c.ToString());
 
 
-                    if (isFirst(a))
+                    if (isPrime(a))
                     {
-                        firstCount++;
+                        primeCount++;
                     }
 
                 }
 
-                if (firstCount == identificators[i].Length - 3 - 1)
+                if (primeCount == identificators[i].Length - 3 - 1) // If the value of the variable counting the occurrences of prime numbers in a given identifier(primeCount) is equal to the number of digits in that identifier, then the identifier consists only of prime numbers
                 {
-                    idsWithOnlyFirstNumbers.Add(identificators[i]);
+                    idsWithOnlyPrimeNumbers.Add(identificators[i]);
                 }
             }
 
-            return idsWithOnlyFirstNumbers;
+            return idsWithOnlyPrimeNumbers;
         }
 
         static ArrayList sumAllNumbersInIdentificators(string[] identificators)
@@ -100,15 +100,15 @@ namespace Kolokwium18_11
             }
             Console.WriteLine();
 
-            ArrayList identificatorsWithOnlyFirstNumbers = checkIdentificators(lines);
+            ArrayList identificatorsWithOnlyPrimeNumbers = checkIdentificatorsForOnlyPrimeNumbers(lines);
 
             Console.WriteLine("Identyfikatory w których znajdują się tylko liczby pierwsze: ");
-            printArrayList(identificatorsWithOnlyFirstNumbers);
+            printArrayList(identificatorsWithOnlyPrimeNumbers);
             Console.WriteLine();
 
             Console.WriteLine("Sumy cyfr w każdym z identyfikatorów: ");
-            ArrayList addedNumbers = sumAllNumbersInIdentificators(lines);
-            printArrayList(addedNumbers);
+            ArrayList addedNumbersInIds = sumAllNumbersInIdentificators(lines);
+            printArrayList(addedNumbersInIds);
         }
     }
 }
