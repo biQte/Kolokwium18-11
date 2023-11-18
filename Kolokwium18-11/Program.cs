@@ -77,8 +77,7 @@ namespace Kolokwium18_11
                 int sum = 0;
                 for(int j = 3; j < identificators[i].Length; j++)
                 {
-                    char c = identificators[i][j];
-                    int a = int.Parse(c.ToString());
+                    int a = int.Parse(identificators[i][j].ToString());
 
                     sum += a;
                 }
